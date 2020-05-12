@@ -1,0 +1,36 @@
+{
+  "name": "@unrest/react-config-hook",
+  "main": "client/index.html",
+  "author": "chriscauley <chris@lablackey.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel src -d dist",
+    "lint": "yarn eslint client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chriscauley/yacs.git"
+  },
+  "peerDependencies": {
+    "@unrest/react-jsonschema-form": "^0.0.1",
+    "react": "^16.13.1",
+    "use-global-hook": "^0.1.12"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.0.0-0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "@unrest/storage": "^0.1.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.19.0",
+    "jest": "^26.0.1",
+    "prettier": "^2.0.5"
+  }
+}
