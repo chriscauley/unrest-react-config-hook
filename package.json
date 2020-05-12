@@ -1,11 +1,11 @@
 {
   "name": "@unrest/react-config-hook",
-  "main": "client/index.html",
+  "main": "dist/index.js",
   "author": "chriscauley <chris@lablackey.com>",
   "license": "MIT",
   "scripts": {
     "build": "babel src -d dist",
-    "lint": "yarn eslint client"
+    "lint": "yarn eslint src"
   },
   "repository": {
     "type": "git",
