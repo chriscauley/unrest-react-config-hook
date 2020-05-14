@@ -80,7 +80,9 @@ var ConfigForm = /*#__PURE__*/function (_React$Component) {
     _defineProperty(_assertThisInitialized(_this), "state", {});
 
     _defineProperty(_assertThisInitialized(_this), "onSubmit", function (formData) {
-      return _this.props.config.actions.save(formData);
+      return _this.props.config.actions.save({
+        formData: formData
+      });
     });
 
     _defineProperty(_assertThisInitialized(_this), "onChange", function (formData) {
@@ -122,18 +124,22 @@ var _default = function _default(name, _ref) {
       actions = _ref.actions;
   var storage = new _storage["default"]('app_config__' + name);
   var base_actions = {
-    save: function save(store, formData) {
-      storage.set('formData', formData);
-      store.setState({
-        formData: formData
+    save: function save(store, data) {
+      Object.keys(data).forEach(function (key) {
+        return storage.set(key, data[key]);
       });
-      store.actions.onSave(formData);
+      store.setState(data);
+      store.actions.onSave(data);
     },
     onSave: function onSave() {}
   };
-  var makeHook = (0, _useGlobalHook["default"])(_react["default"], {
-    formData: storage.get('formData') || initial
-  }, _objectSpread(_objectSpread({}, base_actions), actions));
+
+  var initialState = _objectSpread({}, initial);
+
+  storage.keys.forEach(function (key) {
+    initialState[key] = storage.get(key);
+  });
+  var makeHook = (0, _useGlobalHook["default"])(_react["default"], initialState, _objectSpread(_objectSpread({}, base_actions), actions));
 
   var connect = function connect(Component) {
     var _ref2 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
@@ -150,6 +156,7 @@ var _default = function _default(name, _ref) {
         schema: schema,
         uiSchema: uiSchema
       }, state), {}, {
+        Form: connect.Form,
         actions: actions
       })));
 

@@ -5,7 +5,7 @@ import Form from '@unrest/react-jsonschema-form'
 
 class ConfigForm extends React.Component {
   state = {}
-  onSubmit = (formData) => this.props.config.actions.save(formData)
+  onSubmit = (formData) => this.props.config.actions.save({ formData })
   onChange = (formData) => this.setState({ formData })
   render() {
     const { config, ...props } = this.props
@@ -26,18 +26,21 @@ class ConfigForm extends React.Component {
 export default (name, { initial, schema, uiSchema, actions }) => {
   const storage = new Storage('app_config__' + name)
   const base_actions = {
-    save: (store, formData) => {
-      storage.set('formData', formData)
-      store.setState({ formData })
-      store.actions.onSave(formData)
+    save: (store, data) => {
+      Object.keys(data).forEach((key) => storage.set(key, data[key]))
+      store.setState(data)
+      store.actions.onSave(data)
     },
     onSave() {},
   }
-  const makeHook = globalHook(
-    React,
-    { formData: storage.get('formData') || initial },
-    { ...base_actions, ...actions },
-  )
+  const initialState = { ...initial }
+  storage.keys.forEach((key) => {
+    initialState[key] = storage.get(key)
+  })
+  const makeHook = globalHook(React, initialState, {
+    ...base_actions,
+    ...actions,
+  })
 
   const connect = (Component, { propName = 'config' } = {}) => {
     return function ConfigProvider(props) {
@@ -48,6 +51,7 @@ export default (name, { initial, schema, uiSchema, actions }) => {
           schema,
           uiSchema,
           ...state,
+          Form: connect.Form,
           actions,
         },
       }
