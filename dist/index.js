@@ -121,7 +121,10 @@ var _default = function _default(name, _ref) {
   var initial = _ref.initial,
       schema = _ref.schema,
       uiSchema = _ref.uiSchema,
-      actions = _ref.actions;
+      actions = _ref.actions,
+      _ref$propName = _ref.propName,
+      propName = _ref$propName === void 0 ? 'config' : _ref$propName;
+  var og_propName = propName;
   var storage = new _storage["default"]('app_config__' + name);
   var base_actions = {
     save: function save(store, data) {
@@ -144,7 +147,7 @@ var _default = function _default(name, _ref) {
   var connect = function connect(Component) {
     var _ref2 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
         _ref2$propName = _ref2.propName,
-        propName = _ref2$propName === void 0 ? 'config' : _ref2$propName;
+        propName = _ref2$propName === void 0 ? og_propName : _ref2$propName;
 
     return function ConfigProvider(props) {
       var _makeHook = makeHook(),

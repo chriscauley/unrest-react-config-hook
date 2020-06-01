@@ -23,7 +23,8 @@ class ConfigForm extends React.Component {
   }
 }
 
-export default (name, { initial, schema, uiSchema, actions }) => {
+export default (name, { initial, schema, uiSchema, actions, propName='config' }) => {
+  const og_propName = propName
   const storage = new Storage('app_config__' + name)
   const base_actions = {
     save: (store, data) => {
@@ -42,7 +43,7 @@ export default (name, { initial, schema, uiSchema, actions }) => {
     ...actions,
   })
 
-  const connect = (Component, { propName = 'config' } = {}) => {
+  const connect = (Component, { propName = og_propName } = {}) => {
     return function ConfigProvider(props) {
       const [state, actions] = makeHook()
       const connectedProps = {
