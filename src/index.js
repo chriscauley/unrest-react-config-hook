@@ -39,7 +39,7 @@ export default (
   }
   const initialState = { formData: { ...initial } }
   storage.keys.forEach((key) => {
-    initialState.formData[key] = storage.get(key)
+    initialState[key] = storage.get(key)
   })
   const makeHook = globalHook(React, initialState, {
     ...base_actions,

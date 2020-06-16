@@ -140,7 +140,7 @@ var _default = function _default(name, _ref) {
     formData: _objectSpread({}, initial)
   };
   storage.keys.forEach(function (key) {
-    initialState.formData[key] = storage.get(key);
+    initialState[key] = storage.get(key);
   });
   var makeHook = (0, _useGlobalHook["default"])(_react["default"], initialState, _objectSpread(_objectSpread({}, base_actions), actions));
 
