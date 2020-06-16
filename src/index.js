@@ -23,7 +23,10 @@ class ConfigForm extends React.Component {
   }
 }
 
-export default (name, { initial, schema, uiSchema, actions, propName='config' }) => {
+export default (
+  name,
+  { initial, schema, uiSchema, actions, propName = 'config' },
+) => {
   const og_propName = propName
   const storage = new Storage('app_config__' + name)
   const base_actions = {
@@ -34,9 +37,9 @@ export default (name, { initial, schema, uiSchema, actions, propName='config' })
     },
     onSave() {},
   }
-  const initialState = { ...initial }
+  const initialState = { formData: { ...initial } }
   storage.keys.forEach((key) => {
-    initialState[key] = storage.get(key)
+    initialState.formData[key] = storage.get(key)
   })
   const makeHook = globalHook(React, initialState, {
     ...base_actions,
