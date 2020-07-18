@@ -85,7 +85,8 @@ var ConfigForm = /*#__PURE__*/function (_React$Component) {
       });
     });
 
-    _defineProperty(_assertThisInitialized(_this), "onChange", function (formData) {
+    _defineProperty(_assertThisInitialized(_this), "onChange", function (_ref) {
+      var formData = _ref.formData;
       return _this.setState({
         formData: formData
       });
@@ -117,13 +118,13 @@ var ConfigForm = /*#__PURE__*/function (_React$Component) {
   return ConfigForm;
 }(_react["default"].Component);
 
-var _default = function _default(name, _ref) {
-  var initial = _ref.initial,
-      schema = _ref.schema,
-      uiSchema = _ref.uiSchema,
-      actions = _ref.actions,
-      _ref$propName = _ref.propName,
-      propName = _ref$propName === void 0 ? 'config' : _ref$propName;
+var _default = function _default(name, _ref2) {
+  var initial = _ref2.initial,
+      schema = _ref2.schema,
+      uiSchema = _ref2.uiSchema,
+      actions = _ref2.actions,
+      _ref2$propName = _ref2.propName,
+      propName = _ref2$propName === void 0 ? 'config' : _ref2$propName;
   var og_propName = propName;
   var storage = new _storage["default"]('app_config__' + name);
   var base_actions = {
@@ -145,9 +146,9 @@ var _default = function _default(name, _ref) {
   var makeHook = (0, _useGlobalHook["default"])(_react["default"], initialState, _objectSpread(_objectSpread({}, base_actions), actions));
 
   var connect = function connect(Component) {
-    var _ref2 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-        _ref2$propName = _ref2.propName,
-        propName = _ref2$propName === void 0 ? og_propName : _ref2$propName;
+    var _ref3 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+        _ref3$propName = _ref3.propName,
+        propName = _ref3$propName === void 0 ? og_propName : _ref3$propName;
 
     return function ConfigProvider(props) {
       var _makeHook = makeHook(),
