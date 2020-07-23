@@ -138,9 +138,9 @@ var _default = function _default(name) {
     },
     onSave: function onSave() {}
   };
-  var initialState = {
-    formData: _objectSpread({}, initial)
-  };
+
+  var initialState = _objectSpread({}, initial);
+
   storage.keys.forEach(function (key) {
     initialState[key] = storage.get(key);
   });

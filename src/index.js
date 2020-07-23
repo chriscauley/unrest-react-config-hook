@@ -35,7 +35,7 @@ export default (name, options = {}) => {
     },
     onSave() {},
   }
-  const initialState = { formData: { ...initial } }
+  const initialState = { ...initial }
   storage.keys.forEach((key) => {
     initialState[key] = storage.get(key)
   })
