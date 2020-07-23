@@ -4,6 +4,7 @@
   "author": "chriscauley <chris@lablackey.com>",
   "license": "MIT",
   "scripts": {
+    "watch": "yarn build -w",
     "build": "babel src -d dist",
     "lint": "yarn eslint src"
   },

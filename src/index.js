@@ -6,7 +6,7 @@ import Form from '@unrest/react-jsonschema-form'
 class ConfigForm extends React.Component {
   state = {}
   onSubmit = (formData) => this.props.config.actions.save({ formData })
-  onChange = ({formData}) => this.setState({ formData })
+  onChange = ({ formData }) => this.setState({ formData })
   render() {
     const { config, ...props } = this.props
     const { schema, uiSchema, formData } = config
@@ -23,10 +23,8 @@ class ConfigForm extends React.Component {
   }
 }
 
-export default (
-  name,
-  { initial, schema, uiSchema, actions, propName = 'config' },
-) => {
+export default (name, options = {}) => {
+  const { initial, schema, uiSchema, actions, propName = 'config' } = options
   const og_propName = propName
   const storage = new Storage('app_config__' + name)
   const base_actions = {
